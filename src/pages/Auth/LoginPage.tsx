@@ -21,8 +21,8 @@ function LoginPage() {
           </span>
         </div>
 
-        <div className="flex flex-col items-center max-w-lg mt-20">
-          <div className="mb-12">
+        <div className="flex flex-col items-center max-w-lg">
+          <div className="">
             <img
               src="https://res.cloudinary.com/dqcyabvc2/image/upload/v1747903978/get-media-removebg-preview_xzdezv.png "
               alt="Trading Interface"
