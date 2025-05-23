@@ -1,0 +1,122 @@
+[
+  {
+    "id": "1",
+    "title": "Langkah Awal Berinvestasi Saham untuk Pemula",
+    "description": "Ingin memulai investasi saham tapi belum tahu harus mulai dari mana? Artikel ini memberikan panduan lengkap bagi investor pemula tentang cara memahami konsep dasar saham, bagaimana mekanisme transaksi di pasar modal, serta langkah-langkah awal untuk membangun portofolio yang sehat. Anda akan belajar tentang jenis-jenis saham, perbedaan antara pasar primer dan sekunder, serta pentingnya memilih broker yang tepat. Kami juga menjelaskan apa itu IPO, dividen, dan bagaimana menghitung return investasi Anda secara sederhana.",
+    "video": "https://example.com/video/1 "
+  },
+  {
+    "id": "2",
+    "title": "Strategi Swing Trading untuk Trader Harian Indonesia",
+    "description": "Swing trading adalah strategi yang ideal untuk trader yang tidak memiliki banyak waktu namun tetap ingin aktif di pasar saham. Dalam artikel ini, kami paparkan teknik swing trading yang bisa Anda terapkan di pasar modal Indonesia. Anda akan mempelajari bagaimana menggunakan chart harian untuk mengidentifikasi momentum entry dan exit, indikator teknikal seperti RSI dan MACD, serta pola-pola harga yang sering muncul di saham-saham lokal. Kami juga menyertakan tips praktis untuk menghindari noise pasar dan fokus pada setup yang benar-benar valid.",
+    "video": "https://example.com/video/2 "
+  },
+  {
+    "id": "3",
+    "title": "Pendekatan Analisis Teknikal yang Lebih Efektif",
+    "description": "Analisis teknikal adalah metode populer yang digunakan oleh trader untuk memprediksi arah harga berdasarkan data historis. Dalam artikel ini, kami jelaskan prinsip dasar analisis teknikal, termasuk penggunaan grafik harga, volume transaksi, dan indikator pendukung seperti moving average dan Bollinger Bands. Selain itu, Anda akan mempelajari bagaimana membandingkannya dengan analisis fundamental untuk mendapatkan gambaran yang lebih lengkap. Artikel ini sangat cocok untuk trader yang ingin meningkatkan akurasi prediksi mereka dengan tools teknikal yang terbukti efektif.",
+    "video": "https://example.com/video/3 "
+  },
+  {
+    "id": "4",
+    "title": "Candlestick Chart: Panduan Praktis untuk Trader",
+    "description": "Candlestick chart merupakan salah satu alat analisis paling efektif dalam dunia trading saham. Dalam artikel ini, Anda akan mempelajari makna setiap bentuk candlestick, cara membaca sentimen pasar melalui pola-pola tertentu, serta bagaimana menggabungkannya dengan indikator lain untuk memperkuat keputusan trading. Kami bahas pola seperti hammer, engulfing, doji, dan morning star beserta contoh visual yang mudah dipahami. Cocok untuk trader pemula maupun yang ingin menyegarkan kembali pengetahuan mereka tentang chart teknikal.",
+    "video": "https://example.com/video/4 "
+  },
+  {
+    "id": "5",
+    "title": "Level Support dan Resistance: Kunci Sukses Trading Saham",
+    "description": "Support dan resistance adalah dua level kritis yang harus Anda kenali sebagai trader saham. Dengan memahami area-area ini, Anda dapat memprediksi potensi pembalikan arah harga dan menempatkan titik entry dan exit secara lebih tepat. Artikel ini membahas cara menggambar garis support-resistance secara akurat, bagaimana menyesuaikannya saat terjadi breakout, dan penggunaannya bersama Fibonacci retracement serta trendline. Dilengkapi dengan tips untuk menghindari false breakout dan mengonfirmasi sinyal dengan bantuan volume perdagangan.",
+    "video": "https://example.com/video/5 "
+  },
+  {
+    "id": "6",
+    "title": "Manajemen Risiko yang Wajib Dipahami Setiap Trader",
+    "description": "Tanpa manajemen risiko yang baik, trading bisa menjadi aktivitas yang sangat berbahaya. Artikel ini membahas prinsip-prinsip penting dalam mengelola risiko, termasuk stop loss, risk-reward ratio, dan position sizing. Anda akan belajar bagaimana menghitung persentase kerugian yang wajar, menetapkan batasan maksimal kerugian harian/mingguan, serta membuat sistem keluar otomatis agar tidak terjebak emosi. Kami juga memberikan rekomendasi checklist evaluasi harian untuk membantu Anda tetap disiplin dalam menjalankan strategi yang telah direncanakan.",
+    "video": "https://example.com/video/6 "
+  },
+  {
+    "id": "7",
+    "title": "Indeks IHSG: Panduan Membaca Pergerakan Pasar Saham",
+    "description": "Indeks Harga Saham Gabungan (IHSG) adalah barometer utama kondisi pasar modal Indonesia. Dalam artikel ini, Anda akan mempelajari bagaimana indeks ini dihitung, faktor-faktor yang mempengaruhi pergerakannya, serta cara membacanya untuk mengambil keputusan investasi yang lebih cerdas. Kami juga menjelaskan hubungan antara IHSG dan performa individual saham, serta bagaimana memanfaatkannya untuk membangun strategi investasi yang selaras dengan tren makro pasar.",
+    "video": "https://example.com/video/7 "
+  },
+  {
+    "id": "8",
+    "title": "Kriteria Saham Berkualitas untuk Investasi Jangka Panjang",
+    "description": "Memilih saham untuk investasi jangka panjang bukanlah hal yang mudah. Ada banyak saham di pasar yang tampak menjanjikan, tetapi tidak semua layak masuk dalam portofolio Anda. Dalam artikel ini, kami paparkan parameter penting seperti PER, EPS, DER, ROE, dan pertumbuhan laba tahunan untuk membantu Anda memfilter saham berkualitas tinggi. Anda juga akan mempelajari cara membaca laporan keuangan, mengenali manajemen yang solid, serta menilai prospek industri tempat perusahaan berada.",
+    "video": "https://example.com/video/8 "
+  },
+  {
+    "id": "9",
+    "title": "Perbedaan Mendasar Antara Investor dan Trader Saham",
+    "description": "Meskipun tujuan sama — mendapat keuntungan dari pergerakan harga saham — investor dan trader memiliki pendekatan yang sangat berbeda. Investor cenderung fokus pada nilai intrinsik perusahaan dan kinerja jangka panjang, sedangkan trader memanfaatkan volatilitas pasar untuk mendapat profit jangka pendek. Artikel ini membahas perbedaan tersebut secara rinci, termasuk gaya hidup, psikologi, dan strategi yang digunakan oleh kedua kelompok. Ditujukan untuk membantu Anda memutuskan apakah Anda lebih cocok menjadi investor atau trader.",
+    "video": "https://example.com/video/9 "
+  },
+  {
+    "id": "10",
+    "title": "Teknik Scalping Saham untuk Trader Profesional",
+    "description": "Scalping adalah strategi trading intensif yang bertujuan mendapat keuntungan cepat dari fluktuasi harga kecil. Artikel ini ditujukan untuk trader berpengalaman yang ingin memahami teknik scalping secara mendalam. Kami bahas time frame yang digunakan, setup ideal, indikator seperti Volume Profile dan Bollinger Bands, serta bagaimana memilih saham yang likuid dan responsif terhadap perubahan harga. Selain itu, kami memberikan tips untuk menghindari overtrading dan membangun sistem eksekusi yang cepat dan akurat.",
+    "video": "https://example.com/video/10 "
+  },
+  {
+    "id": "11",
+    "title": "Platform Binance: Panduan Lengkap untuk Pengguna Baru",
+    "description": "Binance adalah salah satu platform trading aset digital terbesar di dunia. Jika Anda baru mengenal dunia crypto, artikel ini memberikan panduan langkah demi langkah untuk memulai trading di Binance. Mulai dari cara membuat akun, verifikasi KYC, hingga melakukan deposit dan transaksi pertama Anda. Kami juga membahas fitur-fitur penting seperti Market, Trade, Futures, dan Wallet. Tak ketinggalan tips keamanan agar akun Anda tetap aman dari ancaman phising dan peretasan.",
+    "video": "https://example.com/video/11 "
+  },
+  {
+    "id": "12",
+    "title": "Volume Perdagangan sebagai Konfirmasi Sinyal Teknikal",
+    "description": "Volume perdagangan adalah salah satu indikator yang sering diabaikan oleh trader pemula. Padahal, volume bisa menjadi konfirmasi yang kuat untuk sinyal teknikal seperti breakout dan divergensi. Dalam artikel ini, Anda akan mempelajari bagaimana membaca grafik volume, pola-pola penting seperti volume expansion dan contraction, serta bagaimana memanfaatkannya bersama price action untuk hasil trading yang lebih optimal. Dilengkapi dengan studi kasus nyata dari pergerakan saham-saham BEI.",
+    "video": "https://example.com/video/12 "
+  },
+  {
+    "id": "13",
+    "title": "Reksadana Pasif vs ETF: Mana yang Lebih Menguntungkan?",
+    "description": "ETF (Exchange Traded Fund) dan reksadana pasif adalah instrumen investasi yang cocok untuk investor yang ingin diversifikasi tanpa repot mengelola portofolio sendiri. Dalam artikel ini, kami bandingkan kedua produk ini dari segi biaya, likuiditas, dan fleksibilitas perdagangan. Anda juga akan mempelajari jenis-jenis ETF yang tersedia di pasar Indonesia, serta cara memilih produk yang sesuai dengan profil risiko dan tujuan finansial Anda.",
+    "video": "https://example.com/video/13 "
+  },
+  {
+    "id": "14",
+    "title": "Cara Memilih Broker Saham Terpercaya di Indonesia",
+    "description": "Broker saham adalah pintu gerbang Anda ke dunia investasi. Oleh karena itu, memilih broker yang tepat sangat penting untuk kenyamanan, keamanan, dan keberhasilan investasi Anda. Artikel ini memberikan panduan memilih broker yang sudah terdaftar di OJK, ramah pengguna, dan dilengkapi fasilitas analisis harian. Kami juga berikan daftar broker lokal yang terpercaya, beserta review singkat untuk membantu Anda membuat keputusan yang bijak.",
+    "video": "https://example.com/video/14 "
+  },
+  {
+    "id": "15",
+    "title": "Strategi Dollar Cost Averaging untuk Investasi Rutin",
+    "description": "Dollar Cost Averaging (DCA) adalah strategi investasi yang sangat berguna untuk menghindari timing market yang sulit. Artikel ini membahas bagaimana strategi ini bekerja, manfaatnya dalam mengurangi dampak volatilitas, dan bagaimana Anda bisa menerapkannya secara otomatis melalui aplikasi investasi modern. Simak juga simulasi hasil investasi selama beberapa tahun dan bandingkan dengan strategi lump sum untuk menemukan pendekatan yang paling sesuai dengan gaya investasi Anda.",
+    "video": "https://example.com/video/15 "
+  },
+  {
+    "id": "16",
+    "title": "Peluang Investasi di Sektor Energi Terbarukan Indonesia",
+    "description": "Sektor energi terbarukan tengah menjadi pusat perhatian di Indonesia. Pemerintah menargetkan bauran energi terbarukan mencapai 23% pada tahun 2025, membuka peluang besar bagi investor. Dalam artikel ini, kami bahas peluang investasi di sektor ini, emiten yang sudah listing di BEI seperti SMIWJ dan ADHI, serta tantangan regulasi dan pendanaan yang perlu Anda waspadai. Ini adalah panduan untuk Anda yang ingin ikut serta dalam perkembangan hijau Indonesia.",
+    "video": "https://example.com/video/16 "
+  },
+  {
+    "id": "17",
+    "title": "Pola Harmonic: Alat Prediksi Harga Berbasis Fibonacci",
+    "description": "Pola harmonic adalah alat analisis teknikal yang memanfaatkan rasio Fibonacci untuk memprediksi pembalikan harga. Dalam artikel ini, Anda akan mempelajari pola-pola utama seperti Gartley, Bat, dan Butterfly, serta bagaimana menggunakannya bersama indikator lain seperti RSI dan MACD. Kami juga memberikan panduan lengkap untuk menggambar dan mengonfirmasi pola ini di chart trading Anda, serta cara mengelola risiko saat memasuki posisi berdasarkan pola tersebut.",
+    "video": "https://example.com/video/17 "
+  },
+  {
+    "id": "18",
+    "title": "Kedisiplinan Sebagai Modal Utama Kesuksesan Trader Saham",
+    "description": "Keberhasilan dalam dunia trading tidak hanya bergantung pada strategi atau analisis yang digunakan, tetapi juga pada kedisiplinan dan kontrol emosi. Dalam artikel ini, kami jelaskan pentingnya membangun sistem trading yang bisa diandalkan, membuat jurnal transaksi, dan menetapkan aturan entry-exit yang ketat. Kami juga membahas psikologi trading, termasuk cara menghadapi loss, menghindari overtrading, dan tetap tenang meski pasar sedang bergejolak.",
+    "video": "https://example.com/video/18 "
+  },
+  {
+    "id": "19",
+    "title": "Blue Chip vs Growth Stocks: Manakah yang Lebih Layak?",
+    "description": "Blue chip stocks dan growth stocks memiliki karakteristik yang sangat berbeda. Saham blue chip biasanya stabil, memberikan dividen, dan berasal dari perusahaan mapan. Di sisi lain, growth stocks menawarkan potensi pertumbuhan yang tinggi, meski dengan risiko lebih besar dan tidak memberikan dividen. Dalam artikel ini, kami membahas pro dan kontra dari kedua jenis saham tersebut, serta bagaimana Anda bisa mengombinasinya dalam portofolio yang seimbang.",
+    "video": "https://example.com/video/19 "
+  },
+  {
+    "id": "20",
+    "title": "Trading Otomatis dengan Robot Algo: Tren Masa Depan",
+    "description": "Robot algo trading semakin diminati karena kemampuan eksekusi yang cepat dan bebas emosi. Dalam artikel ini, Anda akan mempelajari bagaimana robot trading bekerja, komponen-komponen utamanya, serta jenis strategi yang bisa diterapkan. Kami juga membahas platform populer seperti MetaTrader, QuantConnect, dan Python-based bots yang bisa digunakan oleh trader teknikal maupun programmer. Cocok untuk Anda yang tertarik mengotomatiskan strategi trading Anda.",
+    "video": "https://example.com/video/20 "
+  }
+]

@@ -9,9 +9,7 @@ function MembershipPage() {
 
   return (
     <div className="sm:min-h-screen bg-gray-50 flex flex-col md:flex-row">
-      {/* Left Side - Text and Form */}
       <div className="md:w-1/2 w-full bg-white flex flex-col justify-center px-6 py-6 md:px-12 md:py-0 relative order-1 md:order-1">
-        {/* Logo and Branding */}
         <div className="absolute top-8 left-12 flex items-center">
           <img
             src="https://res.cloudinary.com/dqcyabvc2/image/upload/v1747901408/Logo_ybz7ji.png "
@@ -23,9 +21,7 @@ function MembershipPage() {
           </span>
         </div>
 
-        {/* Main Content */}
         <div className="max-w-md mx-auto w-full">
-          {/* Title and Subtitle */}
           <div className="mb-3">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">
               Gain unlimited access to all of The Times.
@@ -35,9 +31,7 @@ function MembershipPage() {
             </p>
           </div>
 
-          {/* Subscription Options */}
           <div className="space-y-3">
-            {/* Option: Starter */}
             <div className="border p-4 rounded-lg hover:border-blue-200 bg-blue-50 transition">
               <div className="flex items-center">
                 <input
@@ -59,7 +53,6 @@ function MembershipPage() {
               </p>
             </div>
 
-            {/* Option: Professional */}
             <div className="border p-4 rounded-lg hover:border-blue-200 bg-blue-50 transition">
               <div className="flex items-center">
                 <input
@@ -81,7 +74,6 @@ function MembershipPage() {
               </p>
             </div>
 
-            {/* Option: Unlimited */}
             <div className="border p-4 rounded-lg hover:border-blue-200 bg-blue-50 transition">
               <div className="flex items-center">
                 <input
@@ -104,7 +96,6 @@ function MembershipPage() {
             </div>
           </div>
 
-          {/* Subscribe Button */}
           <Button
             type="submit"
             className="w-full h-10 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors duration-200 text-sm mt-3"
@@ -114,7 +105,6 @@ function MembershipPage() {
         </div>
       </div>
 
-      {/* Right Side - Image */}
       <div className="md:w-1/2 w-full bg-gray-50 hidden md:flex flex-col justify-center items-center px-12 relative order-2 md:order-2">
         <div className="flex flex-col items-center max-w-lg">
           <div className="">

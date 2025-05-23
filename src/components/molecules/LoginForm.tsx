@@ -42,7 +42,6 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
     <Card className="border-0 shadow-none p-0">
       <CardContent className="p-0">
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Email Address */}
           <div className="space-y-2">
             <Input
               type="email"
@@ -55,7 +54,6 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
             />
           </div>
 
-          {/* Password */}
           <div className="space-y-2">
             <div className="relative">
               <Input
@@ -77,7 +75,6 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
             </div>
           </div>
 
-          {/* Already have account? */}
           <div className="text-right">
             <span className="text-gray-600 text-xs">
               Already have an account?{" "}
@@ -90,7 +87,6 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
             </Button>
           </div>
 
-          {/* Submit Button */}
           <Button
             type="submit"
             className="w-full h-10 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors duration-200 text-sm"
@@ -99,7 +95,6 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
           </Button>
         </form>
 
-        {/* Divider */}
         <div className="mt-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
@@ -110,7 +105,6 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
             </div>
           </div>
 
-          {/* Social Buttons */}
           <div className="mt-4 grid grid-cols-2 gap-3">
             <Button
               variant="outline"

@@ -7,7 +7,6 @@ function MembershipPayment() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
-      {/* Left Side - Payment Method Form */}
       <div className="md:w-1/2 w-full bg-white flex flex-col justify-center px-6 py-10 md:px-12 md:py-16 relative">
         <div className="absolute top-8 left-12 flex items-center">
           <img
@@ -20,7 +19,6 @@ function MembershipPayment() {
           </span>
         </div>
         <div className="max-w-md mx-auto w-full">
-          {/* Title */}
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
             Payment Method
           </h1>
@@ -28,7 +26,6 @@ function MembershipPayment() {
             Please fill in your information to complete the purchase.
           </p>
 
-          {/* Selected Plan */}
           <div className="border border-blue-200 rounded-lg p-4 bg-blue-50 mb-3">
             <h3 className="font-semibold text-blue-700">Unlimited Plan</h3>
             <p className="text-gray-600 text-sm">Rp 20.000 / month</p>
@@ -37,7 +34,6 @@ function MembershipPayment() {
             </p>
           </div>
 
-          {/* Payment Form */}
           <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
             {isLoggedIn ? (
               <>
@@ -88,7 +84,6 @@ function MembershipPayment() {
         </div>
       </div>
 
-      {/* Right Side - Image & Branding */}
       <div className="md:w-1/2 w-full bg-gray-50 hidden md:flex flex-col justify-center items-center px-12 relative">
         <div className="flex flex-col items-center max-w-lg">
           <div className="">

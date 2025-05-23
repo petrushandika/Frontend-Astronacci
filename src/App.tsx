@@ -6,6 +6,10 @@ import LoginPage from "./pages/Auth/LoginPage";
 import MembershipPage from "./pages/Membership/MembershipPage";
 import Dashboard from "./pages/Dashboard";
 import MembershipPayment from "./pages/Membership/MembershipPayment";
+import ArticleList from "./pages/Articles/ArticleList";
+import ArticleDetail from "./pages/Articles/ArticleDetail";
+import ContentList from "./pages/Content/ContentList";
+import ContentDetail from "./pages/Content/ContentDetail";
 
 const useAuth = () => {
   const isAuthenticated = !!localStorage.getItem("authToken");
@@ -27,7 +31,7 @@ function App() {
     <div style={{ scrollBehavior: "smooth" }}>
       <Routes>
         <Route path="/" element={<BaseLayout />}>
-          <Route index element={<Navigate to="/membership" replace />} />
+          <Route index element={<Navigate to="/auth/register" replace />} />
 
           <Route
             path="/auth/register"
@@ -51,6 +55,42 @@ function App() {
             element={
               <PrivateRoute>
                 <Dashboard />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/article"
+            element={
+              <PrivateRoute>
+                <ArticleList />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/article/:id"
+            element={
+              <PrivateRoute>
+                <ArticleDetail />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/video"
+            element={
+              <PrivateRoute>
+                <ContentList />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/video/:id"
+            element={
+              <PrivateRoute>
+                <ContentDetail />
               </PrivateRoute>
             }
           />
