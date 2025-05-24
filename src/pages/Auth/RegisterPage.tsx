@@ -34,6 +34,11 @@ function RegisterPage() {
     window.location.href = googleOAuthUrl;
   };
 
+  const handleFacebookAuth = () => {
+    const facebookAuthUrl = "http://localhost:3000/api/auth/facebook";
+    window.location.href = facebookAuthUrl;
+  };
+
   return (
     <div className="sm:min-h-screen bg-gray-50 flex flex-col md:flex-row">
       <div className="md:w-1/2 w-full bg-gray-50 hidden md:flex flex-col justify-center items-center px-12 relative order-2 md:order-1">
@@ -76,6 +81,7 @@ function RegisterPage() {
           <RegisterForm
             onSubmit={handleSubmit}
             onGoogleAuth={handleGoogleAuth}
+            onFacebookAuth={handleFacebookAuth}
           />
         </div>
       </div>

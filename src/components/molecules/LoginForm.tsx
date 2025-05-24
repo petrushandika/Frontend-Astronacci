@@ -9,6 +9,7 @@ import type { Auth } from "@/types/auth.types";
 interface LoginFormProps {
   onSubmit: (data: Auth) => void;
   onGoogleAuth: () => void;
+  onFacebookAuth: () => void;
 }
 
 function LoginForm(props: LoginFormProps): React.JSX.Element {
@@ -112,6 +113,7 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
 
             <Button
               variant="outline"
+              onClick={props.onFacebookAuth}
               className="h-10 border-gray-200 hover:bg-gray-50 flex items-center justify-center space-x-2 text-xs"
             >
               <FaFacebook className="w-4 h-4 text-blue-600" />

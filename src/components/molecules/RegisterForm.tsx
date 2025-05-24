@@ -9,6 +9,7 @@ import type { Auth } from "@/types/auth.types";
 interface RegisterFormProps {
   onSubmit: (data: Auth) => void;
   onGoogleAuth: () => void;
+  onFacebookAuth: () => void;
 }
 
 function RegisterForm(props: RegisterFormProps): React.JSX.Element {
@@ -111,6 +112,7 @@ function RegisterForm(props: RegisterFormProps): React.JSX.Element {
             </Button>
             <Button
               variant="outline"
+              onClick={props.onFacebookAuth}
               className="flex items-center justify-center gap-2 text-xs"
             >
               <FaFacebook className="text-blue-600" />
