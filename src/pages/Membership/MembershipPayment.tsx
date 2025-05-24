@@ -8,16 +8,6 @@ function MembershipPayment() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
       <div className="md:w-1/2 w-full bg-white flex flex-col justify-center px-6 py-10 md:px-12 md:py-16 relative">
-        <div className="absolute top-8 left-12 flex items-center">
-          <img
-            src="https://res.cloudinary.com/dqcyabvc2/image/upload/v1747901408/Logo_ybz7ji.png "
-            alt="Astronacci International Logo"
-            className="h-8 w-auto mr-2 object-contain"
-          />
-          <span className="text-xl font-semibold text-gray-800">
-            Astronacci International
-          </span>
-        </div>
         <div className="max-w-md mx-auto w-full">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
             Payment Method

@@ -1,32 +1,42 @@
-import { useEffect, useState } from "react";
 import { FaUserShield, FaSignOutAlt } from "react-icons/fa";
-import API from "@/services/api";
+import { useAuthContext } from "@/context/AuthContext";
+import { Link } from "react-router-dom";
+
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 
 function Header() {
-  const [name, setName] = useState<string>("");
-
-  useEffect(() => {
-    async function fetchUser() {
-      try {
-        const user = await API.USER.LOGGED_USER();
-        setName(user.name || "User");
-      } catch {
-        setName("User");
-      }
-    }
-    fetchUser();
-  }, []);
+  const { user, setUser } = useAuthContext();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    setUser(null);
     window.location.href = "/auth/login";
   };
 
+  const membershipType = user?.membership || "Unknown";
+  const tooltipId = "membership-tooltip";
+
+  const getMembershipColor = (): string => {
+    if (!user?.membership) return "text-gray-400";
+
+    const validMembership = ["Starter", "Professional", "Unlimited"] as const;
+    type MembershipType = (typeof validMembership)[number];
+
+    const membership = validMembership.includes(
+      user.membership as MembershipType
+    )
+      ? (user.membership as MembershipType)
+      : null;
+
+    return MEMBERSHIP_COLORS[membership as MembershipType] || "text-gray-400";
+  };
+
   return (
-    <header className="flex justify-between items-center bg-white shadow-md sticky top-0 z-10 px-12 py-6">
+    <header className="flex justify-between items-center bg-white shadow-sm sticky top-0 z-10 px-12 py-6">
       <div className="flex items-center space-x-2">
         <img
-          src="https://res.cloudinary.com/dqcyabvc2/image/upload/v1747901408/Logo_ybz7ji.png"
+          src="https://res.cloudinary.com/dqcyabvc2/image/upload/v1747901408/Logo_ybz7ji.png "
           alt="Astronacci International Logo"
           className="h-8 w-auto object-contain"
         />
@@ -36,15 +46,22 @@ function Header() {
       </div>
 
       <div className="flex items-center space-x-6 text-gray-700">
-        <span className="text-sm font-medium">Hi, {name || "User"}</span>
+        <span className="text-sm font-medium">Hi, {user?.name || "User"}</span>
 
-        <button
-          title="Membership"
-          className="text-blue-600 hover:text-blue-800"
-          aria-label="Membership"
+        <Link
+          to="/membership"
+          data-tooltip-id={tooltipId}
+          className="cursor-pointer"
         >
-          <FaUserShield size={20} />
-        </button>
+          <FaUserShield size={20} className={getMembershipColor()} />
+        </Link>
+
+        <ReactTooltip
+          id={tooltipId}
+          content={`You are currently a ${membershipType} member`}
+          place="bottom"
+          className="px-3 py-2 rounded-md bg-gray-800 text-white text-sm shadow-md"
+        />
 
         <button
           title="Logout"
@@ -60,3 +77,9 @@ function Header() {
 }
 
 export default Header;
+
+const MEMBERSHIP_COLORS = {
+  Starter: "text-yellow-500",
+  Professional: "text-blue-500",
+  Unlimited: "text-green-500",
+} as const;

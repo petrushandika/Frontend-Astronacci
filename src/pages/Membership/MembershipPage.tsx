@@ -1,26 +1,45 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import API from "@/services/api";
+
+import { useAuthContext } from "@/context/AuthContext";
+
 import { Button } from "@/components/ui/button";
-import type { Auth } from "@/types/auth.types";
-import { Link } from "react-router-dom";
+import type { MembershipType } from "@/types/user.types";
 
 function MembershipPage() {
-  const handleSubmit = (data: Auth) => {
-    console.log("Form submitted:", data);
+  const [selectedPlan, setSelectedPlan] = useState<MembershipType>("Starter");
+  const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const { user, setUser } = useAuthContext();
+
+  const handleUpgrade = async () => {
+    if (!user) return;
+
+    setLoading(true);
+
+    try {
+      await API.USER.UPGRADE_MEMBERSHIP({ membership: selectedPlan });
+
+      const updatedUser = {
+        ...user,
+        membership: selectedPlan,
+      };
+      setUser(updatedUser);
+
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Failed to upgrade membership", error);
+      alert("Gagal memperbarui membership");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="sm:min-h-screen bg-gray-50 flex flex-col md:flex-row">
       <div className="md:w-1/2 w-full bg-white flex flex-col justify-center px-6 py-6 md:px-12 md:py-0 relative order-1 md:order-1">
-        <div className="absolute top-8 left-12 flex items-center">
-          <img
-            src="https://res.cloudinary.com/dqcyabvc2/image/upload/v1747901408/Logo_ybz7ji.png "
-            alt="Astronacci International Logo"
-            className="h-8 w-auto mr-2 object-contain"
-          />
-          <span className="text-xl font-semibold text-gray-800">
-            Astronacci International
-          </span>
-        </div>
-
         <div className="max-w-md mx-auto w-full">
           <div className="mb-3">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -32,17 +51,26 @@ function MembershipPage() {
           </div>
 
           <div className="space-y-3">
-            <div className="border p-4 rounded-lg hover:border-blue-200 bg-blue-50 transition">
+            <div
+              className={`border p-4 rounded-lg hover:border-blue-200 bg-blue-50 transition cursor-pointer ${
+                selectedPlan === "Starter" ? "border-blue-500 bg-blue-100" : ""
+              }`}
+              onClick={() => setSelectedPlan("Starter")}
+            >
               <div className="flex items-center">
                 <input
                   type="radio"
                   id="starter"
                   name="subscription"
+                  value="Starter"
+                  checked={selectedPlan === "Starter"}
+                  onChange={() => setSelectedPlan("Starter")}
                   className="mr-2"
+                  hidden
                 />
                 <label
                   htmlFor="starter"
-                  className="font-semibold text-blue-700"
+                  className="font-semibold text-blue-700 cursor-pointer flex-1"
                 >
                   Starter Plan
                 </label>
@@ -53,17 +81,28 @@ function MembershipPage() {
               </p>
             </div>
 
-            <div className="border p-4 rounded-lg hover:border-blue-200 bg-blue-50 transition">
+            <div
+              className={`border p-4 rounded-lg hover:border-blue-200 bg-blue-50 transition cursor-pointer ${
+                selectedPlan === "Professional"
+                  ? "border-blue-500 bg-blue-100"
+                  : ""
+              }`}
+              onClick={() => setSelectedPlan("Professional")}
+            >
               <div className="flex items-center">
                 <input
                   type="radio"
                   id="professional"
                   name="subscription"
+                  value="Professional"
+                  checked={selectedPlan === "Professional"}
+                  onChange={() => setSelectedPlan("Professional")}
                   className="mr-2"
+                  hidden
                 />
                 <label
                   htmlFor="professional"
-                  className="font-semibold text-blue-700"
+                  className="font-semibold text-blue-700 cursor-pointer flex-1"
                 >
                   Professional Plan
                 </label>
@@ -74,17 +113,28 @@ function MembershipPage() {
               </p>
             </div>
 
-            <div className="border p-4 rounded-lg hover:border-blue-200 bg-blue-50 transition">
+            <div
+              className={`border p-4 rounded-lg hover:border-blue-200 bg-blue-50 transition cursor-pointer ${
+                selectedPlan === "Unlimited"
+                  ? "border-blue-500 bg-blue-100"
+                  : ""
+              }`}
+              onClick={() => setSelectedPlan("Unlimited")}
+            >
               <div className="flex items-center">
                 <input
                   type="radio"
                   id="unlimited"
                   name="subscription"
+                  value="Unlimited"
+                  checked={selectedPlan === "Unlimited"}
+                  onChange={() => setSelectedPlan("Unlimited")}
                   className="mr-2"
+                  hidden
                 />
                 <label
                   htmlFor="unlimited"
-                  className="font-semibold text-blue-700"
+                  className="font-semibold text-blue-700 cursor-pointer flex-1"
                 >
                   Unlimited Plan
                 </label>
@@ -97,23 +147,23 @@ function MembershipPage() {
           </div>
 
           <Button
-            type="submit"
+            type="button"
             className="w-full h-10 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors duration-200 text-sm mt-3"
+            onClick={handleUpgrade}
+            disabled={loading}
           >
-            <Link to={"/membership/payment"}>Become A Member Now</Link>
+            {loading ? "Processing..." : "Become A Member Now"}
           </Button>
         </div>
       </div>
 
       <div className="md:w-1/2 w-full bg-gray-50 hidden md:flex flex-col justify-center items-center px-12 relative order-2 md:order-2">
         <div className="flex flex-col items-center max-w-lg">
-          <div className="">
-            <img
-              src="https://res.cloudinary.com/dqcyabvc2/image/upload/v1747903978/get-media-removebg-preview_xzdezv.png "
-              alt="Trading Interface"
-              className="w-96 h-auto"
-            />
-          </div>
+          <img
+            src="https://res.cloudinary.com/dqcyabvc2/image/upload/v1747903978/get-media-removebg-preview_xzdezv.png "
+            alt="Trading Interface"
+            className="w-96 h-auto"
+          />
 
           <h1 className="text-3xl font-bold text-gray-900 mb-4 text-center">
             You're All Set!

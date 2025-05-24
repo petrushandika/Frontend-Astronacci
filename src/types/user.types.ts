@@ -1,5 +1,7 @@
 export interface User {
   name: string;
   email: string;
-  membership: "Starter" | "Professional" | "Unlimited";
+  membership: MembershipType;
 }
+
+export type MembershipType = "Starter" | "Professional" | "Unlimited";
