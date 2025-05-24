@@ -1,87 +1,87 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import type { Article } from "@/types/article.types";
 import ArticleCard from "./ArticleCard";
-import { Link } from "react-router-dom";
 import MembershipUpgrade from "@/components/organisms/MembershipUpgrade";
+import API from "@/services/api";
+import type { User } from "@/types/user.types";
 
 type MembershipType = "Starter" | "Professional" | "Unlimited";
+
+const defaultLimits: Record<MembershipType, number> = {
+  Starter: 3,
+  Professional: 10,
+  Unlimited: Infinity,
+};
 
 export function ArticleList() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
-
-  const userMembership: MembershipType = "Starter";
-
-  const getAccessLimit = (type: MembershipType): number => {
-    switch (type) {
-      case "Starter":
-        return 3;
-      case "Professional":
-        return 10;
-      case "Unlimited":
-        return Infinity;
-    }
-  };
-
-  const accessLimit = getAccessLimit(userMembership);
+  const [accessLimit, setAccessLimit] = useState<number>(0);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/data/article.json");
-        if (!res.ok) throw new Error("Failed to load article data");
+    function ARTICLES() {
+      API.USER.LOGGED_USER()
+        .then((user: User) => {
+          const membership = user.membership ?? "Starter";
 
-        const data = await res.json();
-        if (Array.isArray(data)) {
-          setArticles(data);
-        } else {
-          throw new Error("Invalid data format");
-        }
-      } catch (err: any) {
-        console.error(err);
-        setError(err.message || "An error occurred while loading articles.");
-      } finally {
-        setLoading(false);
-      }
-    };
+          API.CONTENT.ARTICLES()
+            .then((data) => {
+              if (!data || !Array.isArray(data.articles)) {
+                setError("Invalid article format.");
+                setLoading(false);
+                return;
+              }
 
-    fetchData();
+              setArticles(data.articles);
+              const limit =
+                data.limit == null
+                  ? defaultLimits[membership]
+                  : data.limit === Infinity
+                  ? Infinity
+                  : data.limit;
+              setAccessLimit(limit);
+              setLoading(false);
+            })
+            .catch((err) => {
+              setError(err.message || "Failed to load articles.");
+              setLoading(false);
+            });
+        })
+        .catch((err) => {
+          if (err.response?.status === 401) {
+            setError("You must be logged in to view articles.");
+          } else {
+            setError(err.message || "Failed to load user data.");
+          }
+          setLoading(false);
+        });
+    }
+
+    ARTICLES();
   }, []);
 
-  if (loading) {
+  if (loading)
     return (
-      <div className="text-center py-10">
-        <p className="text-gray-600">Loading articles...</p>
-      </div>
+      <p className="text-center py-10 text-gray-600">Loading articles...</p>
     );
-  }
 
-  if (error) {
-    return (
-      <div className="text-center py-10">
-        <p className="text-red-500">{error}</p>
-      </div>
-    );
-  }
+  if (error) return <p className="text-center py-10 text-red-500">{error}</p>;
 
-  if (articles.length === 0) {
+  if (articles.length === 0)
     return (
-      <div className="text-center py-10">
-        <p className="text-gray-600">No articles available.</p>
-      </div>
+      <p className="text-center py-10 text-gray-600">No articles available.</p>
     );
-  }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto">
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Articles</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {articles.map((article, index) => {
-          const isLocked = index >= accessLimit;
-
+        {articles.map((article, i) => {
+          const isLocked = i >= accessLimit;
           return (
             <MembershipUpgrade
               key={article.id}
@@ -98,13 +98,7 @@ export function ArticleList() {
                   }
                 }}
               >
-                <ArticleCard
-                  id={article.id}
-                  title={article.title}
-                  description={article.description}
-                  image={article.image}
-                  isLocked={isLocked}
-                />
+                <ArticleCard {...article} isLocked={isLocked} />
               </Link>
             </MembershipUpgrade>
           );

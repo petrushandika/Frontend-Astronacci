@@ -3,9 +3,11 @@ import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 
 function BaseLayout() {
+  const isAuthenticated = !!localStorage.getItem("token");
+
   return (
     <div>
-      <Header />
+      {isAuthenticated && <Header />}
       <main>
         <Outlet />
       </main>

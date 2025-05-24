@@ -11,19 +11,18 @@ import ArticleDetail from "./pages/Articles/ArticleDetail";
 import ContentList from "./pages/Content/ContentList";
 import ContentDetail from "./pages/Content/ContentDetail";
 
-const useAuth = () => {
-  const isAuthenticated = !!localStorage.getItem("authToken");
-  return isAuthenticated;
+const useAuth = (): boolean => {
+  return Boolean(localStorage.getItem("token"));
 };
 
 const PrivateRoute = ({ children }: { children: JSX.Element }) => {
   const auth = useAuth();
-  return auth ? children : <Navigate to="/auth/login" />;
+  return auth ? children : <Navigate to="/auth/login" replace />;
 };
 
 const PublicRoute = ({ children }: { children: JSX.Element }) => {
   const auth = useAuth();
-  return !auth ? children : <Navigate to="/membership" />;
+  return !auth ? children : <Navigate to="/dashboard" replace />;
 };
 
 function App() {
@@ -31,7 +30,7 @@ function App() {
     <div style={{ scrollBehavior: "smooth" }}>
       <Routes>
         <Route path="/" element={<BaseLayout />}>
-          <Route index element={<Navigate to="/auth/register" replace />} />
+          <Route index element={<Navigate to="/auth/login" replace />} />
 
           <Route
             path="/auth/register"
@@ -67,7 +66,6 @@ function App() {
               </PrivateRoute>
             }
           />
-
           <Route
             path="/article/:id"
             element={
@@ -76,7 +74,6 @@ function App() {
               </PrivateRoute>
             }
           />
-
           <Route
             path="/video"
             element={
@@ -85,7 +82,6 @@ function App() {
               </PrivateRoute>
             }
           />
-
           <Route
             path="/video/:id"
             element={
@@ -103,7 +99,6 @@ function App() {
               </PrivateRoute>
             }
           />
-
           <Route
             path="/membership/payment"
             element={

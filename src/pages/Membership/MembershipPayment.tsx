@@ -38,7 +38,7 @@ function MembershipPayment() {
             {isLoggedIn ? (
               <>
                 <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+                  <Label htmlFor="name">Name</Label>
                   <Input id="name" type="text" placeholder="John Doe" />
                 </div>
 
@@ -54,7 +54,7 @@ function MembershipPayment() {
             ) : (
               <>
                 <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+                  <Label htmlFor="name">Name</Label>
                   <Input id="name" type="text" placeholder="John Doe" />
                 </div>
                 <div className="space-y-2">

@@ -18,7 +18,7 @@ function ContentCard({
   video,
   isLocked = false,
 }: ContentCardProps) {
-  const truncatedDescription = truncateText(description, 10);
+  const truncatedContent = truncateText(description, 10);
 
   return (
     <div className="relative group">
@@ -36,13 +36,13 @@ function ContentCard({
             {title}
           </h3>
           <p className="text-sm text-gray-600 mt-2 text-pretty">
-            {truncatedDescription}
+            {truncatedContent}
           </p>
         </CardContent>
       </Card>
 
       {isLocked && (
-        <div className="absolute inset-0 bg-black/50 flex flex-col gap-y-3 items-center justify-center rounded-lg pointer-events-none">
+        <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center rounded-lg pointer-events-none">
           <FiLock className="text-white w-8 h-8" />
           <span className="text-white text-sm sm:text-base font-medium">
             Unlock Full Access

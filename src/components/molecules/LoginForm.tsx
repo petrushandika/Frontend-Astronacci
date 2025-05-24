@@ -12,7 +12,7 @@ interface LoginFormProps {
 
 function LoginForm(props: LoginFormProps): React.JSX.Element {
   const [formData, setFormData] = useState<Auth>({
-    fullName: "",
+    name: "",
     email: "",
     password: "",
   });
@@ -29,12 +29,6 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (formData.password) {
-      alert("Passwords do not match!");
-      return;
-    }
-
     props.onSubmit(formData);
   };
 
@@ -77,7 +71,7 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
 
           <div className="text-right">
             <span className="text-gray-600 text-xs">
-              Already have an account?{" "}
+              Don’t have an account?{" "}
             </span>
             <Button
               variant="link"

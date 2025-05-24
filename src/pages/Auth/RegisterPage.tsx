@@ -1,14 +1,24 @@
 import RegisterForm from "@/components/molecules/RegisterForm";
+import API from "@/services/api";
 import type { Auth } from "@/types/auth.types";
+import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
-  const handleSubmit = (data: Auth) => {
-    console.log("Form submitted:", data);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (data: Auth) => {
+    try {
+      const response = await API.AUTH.REGISTER(data);
+      console.log("Registration successful:", response);
+      navigate("/auth/login");
+    } catch (error) {
+      console.error("Registration failed:", error);
+      alert("Registration failed. Please try again.");
+    }
   };
 
   return (
     <div className="sm:min-h-screen bg-gray-50 flex flex-col md:flex-row">
-      {/* Left Side - Illustration */}
       <div className="md:w-1/2 w-full bg-gray-50 hidden md:flex flex-col justify-center items-center px-12 relative order-2 md:order-1">
         <div className="absolute top-8 left-12 flex items-center">
           <img
@@ -40,7 +50,6 @@ function RegisterPage() {
         </div>
       </div>
 
-      {/* Right Side - Register Form */}
       <div className="md:w-1/2 w-full bg-white flex flex-col justify-center px-6 py-6 md:px-12 md:py-0 relative order-1 md:order-2">
         <div className="max-w-md mx-auto w-full">
           <div className="mb-6">
@@ -49,7 +58,6 @@ function RegisterPage() {
               Create your free account to access premium features and content.
             </p>
           </div>
-
           <RegisterForm onSubmit={handleSubmit} />
         </div>
       </div>

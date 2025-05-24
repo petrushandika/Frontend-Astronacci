@@ -1,37 +1,64 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import API from "@/services/api";
 import type { Article } from "@/types/article.types";
 
 function ArticleDetail() {
   const { id } = useParams<{ id: string }>();
   const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/data/article.json")
-      .then((res) => res.json())
-      .then((data: Article[]) => {
-        const found = data.find((a) => a.id === id);
-        setArticle(found || null);
-        setLoading(false);
-      })
-      .catch(() => {
+    async function fetchArticles() {
+      setLoading(true);
+      setError(null);
+      try {
+        const user = await API.USER.LOGGED_USER();
+
+        const data = await API.CONTENT.ARTICLES();
+
+        if (!data || !Array.isArray(data.articles)) {
+          setError("Invalid article format.");
+          setLoading(false);
+          return;
+        }
+
+        const found = data.articles.find((a: Article) => a.id === id);
+        if (!found) {
+          setError("Article not found.");
+          setArticle(null);
+        } else {
+          setArticle(found);
+        }
+      } catch (err: any) {
+        if (err.response?.status === 401) {
+          setError("You must be logged in to access this article.");
+        } else {
+          setError(err.message || "Failed to load data.");
+        }
         setArticle(null);
+      } finally {
         setLoading(false);
-      });
+      }
+    }
+
+    fetchArticles();
   }, [id]);
 
   if (loading) {
     return (
-      <div className="p-4 text-center text-gray-600">Memuat artikel...</div>
+      <div className="p-4 text-center text-gray-600">Loading article...</div>
     );
+  }
+
+  if (error) {
+    return <div className="p-4 text-center text-red-500">{error}</div>;
   }
 
   if (!article) {
     return (
-      <div className="p-4 text-center text-red-500">
-        Artikel tidak ditemukan.
-      </div>
+      <div className="p-4 text-center text-red-500">Article not found.</div>
     );
   }
 
@@ -51,7 +78,7 @@ function ArticleDetail() {
 
       <div className="prose prose-gray prose-lg max-w-none">
         <p className="text-base sm:text-lg text-gray-700 leading-relaxed whitespace-pre-line">
-          {article.description}
+          {article.content}
         </p>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { MEMBERSHIP_LIMITS } from "@/config/membershipLimits";
+import { LIMITS } from "@/config/limits";
 
 type MembershipRole = "starter" | "professional" | "unlimited";
 
@@ -13,7 +13,7 @@ export function useMembership() {
 
   const role = isValidRole(rawRole) ? rawRole : "starter";
 
-  const limits = MEMBERSHIP_LIMITS[role];
+  const limits = LIMITS[role];
 
   return {
     role,

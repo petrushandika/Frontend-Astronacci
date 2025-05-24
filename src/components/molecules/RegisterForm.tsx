@@ -12,11 +12,10 @@ interface RegisterFormProps {
 
 function RegisterForm(props: RegisterFormProps): React.JSX.Element {
   const [formData, setFormData] = useState<Auth>({
-    fullName: "",
+    name: "",
     email: "",
     password: "",
   });
-
   const [showPassword, setShowPassword] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,12 +28,6 @@ function RegisterForm(props: RegisterFormProps): React.JSX.Element {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (formData.password) {
-      alert("Passwords do not match!");
-      return;
-    }
-
     props.onSubmit(formData);
   };
 
@@ -42,61 +35,50 @@ function RegisterForm(props: RegisterFormProps): React.JSX.Element {
     <Card className="border-0 shadow-none p-0">
       <CardContent className="p-0">
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-2">
+          <Input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            placeholder="Full Name"
+            required
+          />
+
+          <Input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            placeholder="Email Address"
+            required
+          />
+
+          <div className="relative">
             <Input
-              type="text"
-              name="fullName"
-              value={formData.fullName}
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={formData.password}
               onChange={handleInputChange}
-              placeholder="Full Name"
-              className="w-full h-10 px-3 bg-gray-50 border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+              placeholder="Password"
               required
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
           </div>
 
-          <div className="space-y-2">
-            <Input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder="Email Address"
-              className="w-full h-10 px-3 bg-gray-50 border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-              required
-            />
-          </div>
-
-          <div className="space-y-2">
-            <div className="relative">
-              <Input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                placeholder="Password"
-                className="w-full h-10 px-3 bg-gray-50 border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
-            </div>
-          </div>
-
-          <div className="text-right">
-            <span className="text-gray-600 text-xs">
-              Already have an account?{" "}
-            </span>
-            <Button
-              variant="link"
+          <div className="text-right text-xs">
+            <span className="text-gray-600">Already have an account? </span>
+            <Link
+              to="/auth/login"
               className="text-blue-500 text-xs p-0 h-auto font-medium hover:underline"
             >
-              <Link to={"/auth/login"}>Login</Link>
-            </Button>
+              Login
+            </Link>
           </div>
 
           <Button
@@ -120,18 +102,17 @@ function RegisterForm(props: RegisterFormProps): React.JSX.Element {
           <div className="mt-4 grid grid-cols-2 gap-3">
             <Button
               variant="outline"
-              className="h-10 border-gray-200 hover:bg-gray-50 flex items-center justify-center space-x-2 text-xs"
+              className="flex items-center justify-center gap-2 text-xs"
             >
-              <FaGoogle className="w-4 h-4 text-red-500" />
-              <span>Google</span>
+              <FaGoogle className="text-red-500" />
+              Google
             </Button>
-
             <Button
               variant="outline"
-              className="h-10 border-gray-200 hover:bg-gray-50 flex items-center justify-center space-x-2 text-xs"
+              className="flex items-center justify-center gap-2 text-xs"
             >
-              <FaFacebook className="w-4 h-4 text-blue-600" />
-              <span>Facebook</span>
+              <FaFacebook className="text-blue-600" />
+              Facebook
             </Button>
           </div>
         </div>

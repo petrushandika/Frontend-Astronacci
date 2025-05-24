@@ -1,87 +1,86 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MembershipUpgrade from "@/components/organisms/MembershipUpgrade";
-import type { Content } from "@/types/content.types";
+import API from "@/services/api";
+import type { User } from "@/types/user.types";
 import ContentCard from "./ContentCard";
+import type { Content } from "@/types/content.types";
 
 type MembershipType = "Starter" | "Professional" | "Unlimited";
+
+const defaultLimits: Record<MembershipType, number> = {
+  Starter: 3,
+  Professional: 10,
+  Unlimited: Infinity,
+};
 
 export function ContentList() {
   const [contents, setContents] = useState<Content[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
-
-  const userMembership: MembershipType = "Starter";
-
-  const getAccessLimit = (type: MembershipType): number => {
-    switch (type) {
-      case "Starter":
-        return 3;
-      case "Professional":
-        return 10;
-      case "Unlimited":
-        return Infinity;
-    }
-  };
-
-  const accessLimit = getAccessLimit(userMembership);
+  const [accessLimit, setAccessLimit] = useState<number>(0);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/data/content.json");
-        if (!res.ok) throw new Error("Failed to load content data");
+    function VIDEOS() {
+      API.USER.LOGGED_USER()
+        .then((user: User) => {
+          const membership = user.membership ?? "Starter";
 
-        const data = await res.json();
-        if (Array.isArray(data)) {
-          setContents(data);
-        } else {
-          throw new Error("Invalid data format");
-        }
-      } catch (err: any) {
-        console.error(err);
-        setError(err.message || "An error occurred while loading contents.");
-      } finally {
-        setLoading(false);
-      }
-    };
+          API.CONTENT.VIDEOS()
+            .then((data) => {
+              console.log("API.CONTENT.VIDEOS() response:", data);
+              if (!data || !Array.isArray(data.contents)) {
+                setError("Invalid content format.");
+                setLoading(false);
+                return;
+              }
 
-    fetchData();
+              setContents(data.contents);
+              const limit =
+                data.limit == null
+                  ? defaultLimits[membership]
+                  : data.limit === Infinity
+                  ? Infinity
+                  : data.limit;
+              setAccessLimit(limit);
+              setLoading(false);
+            })
+            .catch((err) => {
+              setError(err.message || "Failed to load contents.");
+              setLoading(false);
+            });
+        })
+        .catch((err) => {
+          if (err.response?.status === 401) {
+            setError("You must be logged in to view contents.");
+          } else {
+            setError(err.message || "Failed to load user data.");
+          }
+          setLoading(false);
+        });
+    }
+
+    VIDEOS();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="text-center py-10">
-        <p className="text-gray-600">Loading contents...</p>
-      </div>
-    );
-  }
+  if (loading)
+    return <p className="text-center py-10 text-gray-600">Loading videos...</p>;
 
-  if (error) {
-    return (
-      <div className="text-center py-10">
-        <p className="text-red-500">{error}</p>
-      </div>
-    );
-  }
+  if (error) return <p className="text-center py-10 text-red-500">{error}</p>;
 
-  if (contents.length === 0) {
+  if (contents.length === 0)
     return (
-      <div className="text-center py-10">
-        <p className="text-gray-600">No contents available.</p>
-      </div>
+      <p className="text-center py-10 text-gray-600">No videos available.</p>
     );
-  }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Video</h1>
+    <div className="container mx-auto">
+      <h1 className="text-3xl font-bold text-gray-900 mb-8">Videos</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {contents.map((content, index) => {
-          const isLocked = index >= accessLimit;
-
+        {contents.map((content, i) => {
+          const isLocked = i >= accessLimit;
           return (
             <MembershipUpgrade
               key={content.id}
@@ -89,7 +88,7 @@ export function ContentList() {
               onClose={() => setShowUpgradeModal(false)}
             >
               <Link
-                to={isLocked ? "#" : `/content/${content.id}`}
+                to={isLocked ? "#" : `/video/${content.id}`}
                 className="block h-full"
                 onClick={(e) => {
                   if (isLocked) {
@@ -98,13 +97,7 @@ export function ContentList() {
                   }
                 }}
               >
-                <ContentCard
-                  id={content.id}
-                  title={content.title}
-                  description={content.description}
-                  video={content.video}
-                  isLocked={isLocked}
-                />
+                <ContentCard {...content} isLocked={isLocked} />
               </Link>
             </MembershipUpgrade>
           );
