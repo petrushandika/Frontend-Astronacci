@@ -34,8 +34,10 @@ const API = {
 
     GOOGLE_AUTH: async () => {
       try {
-        const response = await axios.get(`${CONFIG.BASE_URL}/api/auth/google`);
-        return response.data;
+        const response = await axios.get(
+          `${CONFIG.BASE_URL}/api/auth/google-url`
+        );
+        window.location.href = response.data.url;
       } catch (error) {
         if (axios.isAxiosError(error)) throw error;
         throw error;
@@ -45,9 +47,9 @@ const API = {
     FACEBOOK_AUTH: async () => {
       try {
         const response = await axios.get(
-          `${CONFIG.BASE_URL}/api/auth/facebook`
+          `${CONFIG.BASE_URL}/api/auth/facebook-url`
         );
-        return response.data;
+        window.location.href = response.data.url;
       } catch (error) {
         if (axios.isAxiosError(error)) throw error;
         throw error;

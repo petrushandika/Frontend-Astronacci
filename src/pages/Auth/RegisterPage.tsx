@@ -17,12 +17,29 @@ function RegisterPage() {
     }
   };
 
+  const handleGoogleAuth = () => {
+    const params = new URLSearchParams({
+      response_type: "code",
+      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+      redirect_uri: "http://localhost:3000/api/auth/google/callback",
+      scope: "profile email",
+      access_type: "offline",
+      prompt: "consent",
+    });
+
+    console.log("Google Client ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
+
+    const googleOAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
+
+    window.location.href = googleOAuthUrl;
+  };
+
   return (
     <div className="sm:min-h-screen bg-gray-50 flex flex-col md:flex-row">
       <div className="md:w-1/2 w-full bg-gray-50 hidden md:flex flex-col justify-center items-center px-12 relative order-2 md:order-1">
         <div className="absolute top-8 left-12 flex items-center">
           <img
-            src="https://res.cloudinary.com/dqcyabvc2/image/upload/v1747901408/Logo_ybz7ji.png "
+            src="https://res.cloudinary.com/dqcyabvc2/image/upload/v1747901408/Logo_ybz7ji.png"
             alt="Astronacci International Logo"
             className="h-8 w-auto mr-2 object-contain"
           />
@@ -32,13 +49,11 @@ function RegisterPage() {
         </div>
 
         <div className="flex flex-col items-center max-w-lg">
-          <div className="">
-            <img
-              src="https://res.cloudinary.com/dqcyabvc2/image/upload/v1747903978/get-media-removebg-preview_xzdezv.png "
-              alt="Trading Interface"
-              className="w-96 h-auto"
-            />
-          </div>
+          <img
+            src="https://res.cloudinary.com/dqcyabvc2/image/upload/v1747903978/get-media-removebg-preview_xzdezv.png"
+            alt="Trading Interface"
+            className="w-96 h-auto"
+          />
 
           <h1 className="text-3xl font-bold text-gray-900 mb-4 text-center">
             Introducing Astronacci International
@@ -58,7 +73,10 @@ function RegisterPage() {
               Create your free account to access premium features and content.
             </p>
           </div>
-          <RegisterForm onSubmit={handleSubmit} />
+          <RegisterForm
+            onSubmit={handleSubmit}
+            onGoogleAuth={handleGoogleAuth}
+          />
         </div>
       </div>
     </div>

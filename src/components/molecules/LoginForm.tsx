@@ -8,6 +8,7 @@ import type { Auth } from "@/types/auth.types";
 
 interface LoginFormProps {
   onSubmit: (data: Auth) => void;
+  onGoogleAuth: () => void;
 }
 
 function LoginForm(props: LoginFormProps): React.JSX.Element {
@@ -102,6 +103,7 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
           <div className="mt-4 grid grid-cols-2 gap-3">
             <Button
               variant="outline"
+              onClick={props.onGoogleAuth}
               className="h-10 border-gray-200 hover:bg-gray-50 flex items-center justify-center space-x-2 text-xs"
             >
               <FaGoogle className="w-4 h-4 text-red-500" />

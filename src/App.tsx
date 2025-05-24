@@ -10,6 +10,7 @@ import ArticleList from "./pages/Articles/ArticleList";
 import ArticleDetail from "./pages/Articles/ArticleDetail";
 import ContentList from "./pages/Content/ContentList";
 import ContentDetail from "./pages/Content/ContentDetail";
+import AuthCallback from "./context/AuthCallback";
 
 const useAuth = (): boolean => {
   return Boolean(localStorage.getItem("token"));
@@ -45,6 +46,15 @@ function App() {
             element={
               <PublicRoute>
                 <LoginPage />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            path="/auth/callback"
+            element={
+              <PublicRoute>
+                <AuthCallback />
               </PublicRoute>
             }
           />

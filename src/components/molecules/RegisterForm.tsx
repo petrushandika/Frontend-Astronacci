@@ -8,6 +8,7 @@ import type { Auth } from "@/types/auth.types";
 
 interface RegisterFormProps {
   onSubmit: (data: Auth) => void;
+  onGoogleAuth: () => void;
 }
 
 function RegisterForm(props: RegisterFormProps): React.JSX.Element {
@@ -102,6 +103,7 @@ function RegisterForm(props: RegisterFormProps): React.JSX.Element {
           <div className="mt-4 grid grid-cols-2 gap-3">
             <Button
               variant="outline"
+              onClick={props.onGoogleAuth}
               className="flex items-center justify-center gap-2 text-xs"
             >
               <FaGoogle className="text-red-500" />
